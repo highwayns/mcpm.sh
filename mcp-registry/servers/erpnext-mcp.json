@@ -1,0 +1,64 @@
+{
+  "name": "erpnext-mcp",
+  "display_name": "ERPNext Server",
+  "description": "MCP-compatible ERPNext API server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frappe/frappe"
+  },
+  "homepage": "https://erpnext.com",
+  "author": {
+    "name": "Frappe Technologies",
+    "url": "https://frappe.io"
+  },
+  "license": "MIT",
+  "categories": ["Finance", "Web Services"],
+  "tags": ["erpnext", "frappe", "accounting"],
+  "installations": {
+    "docker": {
+      "type": "docker",
+      "command": "docker run",
+      "args": [
+        "--rm",
+        "-p", "8000:8000",
+        "frappe/erpnext"
+      ],
+      "description": "使用 Docker 快速启动 ERPNext 服务",
+      "recommended": true
+    }
+  },
+  "tools": [
+    {
+      "name": "create_customer",
+      "description": "在 ERPNext 中创建客户",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_name": { "type": "string" },
+          "email": { "type": "string" }
+        },
+        "required": ["customer_name"]
+      }
+    }
+  ],
+  "arguments": {
+    "ERP_URL": {
+      "description": "ERPNext 服务器的基础地址",
+      "required": true,
+      "example": "http://localhost:8000"
+    },
+    "API_KEY": {
+      "description": "用于访问 ERPNext API 的密钥",
+      "required": true,
+      "example": "your-api-key"
+    }
+  },
+  "examples": [
+    {
+      "title": "创建客户",
+      "description": "将用户输入的客户信息通过 create_customer 工具注册到 ERPNext",
+      "prompt": "请帮我注册一个客户叫做山田太郎，邮箱是taro@example.com"
+    }
+  ],
+  "is_official": false
+}
