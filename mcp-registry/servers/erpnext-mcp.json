@@ -15,15 +15,18 @@
   "categories": ["Finance", "Web Services"],
   "tags": ["erpnext", "frappe", "accounting"],
   "installations": {
-    "docker": {
-      "type": "docker",
-      "command": "docker run",
+    "local-node": {
+      "type": "node",
+      "command": "node",
       "args": [
-        "--rm",
-        "-p", "8000:8000",
-        "frappe/erpnext"
+        "/home/tei952/sayama/03.workflow/mcp/erpnext-mcp-server/build/index.js"
       ],
-      "description": "使用 Docker 快速启动 ERPNext 服务",
+      "env": {
+        "ERPNEXT_URL": "${ERPNEXT_URL}",
+        "ERPNEXT_API_KEY": "${ERPNEXT_API_KEY}",
+        "ERPNEXT_API_SECRET": "${ERPNEXT_API_SECRET}"
+      },
+      "description": "本地通过 Node 启动 ERPNext MCP Server 服务",
       "recommended": true
     }
   },
@@ -41,18 +44,6 @@
       }
     }
   ],
-  "arguments": {
-    "ERP_URL": {
-      "description": "ERPNext 服务器的基础地址",
-      "required": true,
-      "example": "http://localhost:8000"
-    },
-    "API_KEY": {
-      "description": "用于访问 ERPNext API 的密钥",
-      "required": true,
-      "example": "your-api-key"
-    }
-  },
   "examples": [
     {
       "title": "创建客户",
